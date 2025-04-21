@@ -29,13 +29,13 @@ We preprocessed the outage data to make it more workable. Specifically:
 
 After cleaning, the dataset looks like this:
 
-| YEAR | MONTH | U.S. STATE | POSTAL CODE | NERC REGION | CLIMATE REGION      | ANOMALY LEVEL | OUTAGE START         | OUTAGE RESTORATION    |
-|------|-------|------------|-------------|-------------|---------------------|----------------|-----------------------|------------------------|
-| 2011 | 7     | Minnesota  | MN          | MRO         | East North Central | -0.3           | 2011-07-01 17:00:00   | 2011-07-03 20:00:00    |
-| 2014 | 5     | Minnesota  | MN          | MRO         | East North Central | -0.1           | 2014-05-11 18:38:00   | 2014-05-11 18:39:00    |
-| 2010 | 10    | Minnesota  | MN          | MRO         | East North Central | -1.5           | 2010-10-26 20:00:00   | 2010-10-28 22:00:00    |
-| 2012 | 6     | Minnesota  | MN          | MRO         | East North Central | -0.1           | 2012-06-19 04:30:00   | 2012-06-20 23:00:00    |
-| 2015 | 7     | Minnesota  | MN          | MRO         | East North Central | 1.2            | 2015-07-18 02:00:00   | 2015-07-19 07:00:00    |
+|   YEAR |   MONTH | U.S._STATE   | POSTAL.CODE   | NERC.REGION   | CLIMATE.REGION     |   ANOMALY.LEVEL | OUTAGE.START        | OUTAGE.RESTORATION   |
+|-------:|--------:|:-------------|:--------------|:--------------|:-------------------|----------------:|:--------------------|:---------------------|
+|   2011 |       7 | Minnesota    | MN            | MRO           | East North Central |            -0.3 | 2011-07-01 17:00:00 | 2011-07-03 20:00:00  |
+|   2014 |       5 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | 2014-05-11 18:38:00 | 2014-05-11 18:39:00  |
+|   2010 |      10 | Minnesota    | MN            | MRO           | East North Central |            -1.5 | 2010-10-26 20:00:00 | 2010-10-28 22:00:00  |
+|   2012 |       6 | Minnesota    | MN            | MRO           | East North Central |            -0.1 | 2012-06-19 04:30:00 | 2012-06-20 23:00:00  |
+|   2015 |       7 | Minnesota    | MN            | MRO           | East North Central |             1.2 | 2015-07-18 02:00:00 | 2015-07-19 07:00:00  |
 
 ---
 
