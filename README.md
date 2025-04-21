@@ -184,3 +184,58 @@ The above table gives insight into how the anomaly levels change during the mont
 | system operability disruption |           728.87  |          1.70555e+07 |
 
 This table is key in demonstrating that the fact that fuel supply emergency is the cause with the longest outage duration may be an outlier, as it only affects 1 customer. Severe weather on the other hand, affects drastic numbers of customers.
+
+## Baseline Model
+To predict power outage duration, we created a baseline model using a Linear Regression pipeline. This model incorporated three key features:
+
+MONTH (categorical, one-hot encoded)
+
+CLIMATE.REGION (categorical, one-hot encoded)
+
+ANOMALY.LEVEL (numerical, with a transformation to absolute value)
+
+We used scikit-learn’s Pipeline and ColumnTransformer to preprocess the data and train the model. The categorical columns were encoded using OneHotEncoder, and the anomaly level was passed through a FunctionTransformer to take its absolute value. We trained the model on a train/test split and evaluated its performance using mean squared error (MSE) and mean absolute error (MAE).
+
+### Baseline Model Performance:
+
+Metric	Value
+Training MSE	14.9 million min^2
+Testing MSE	12.7 million min^2
+Testing MAE	2404.05 mins
+This simple model provided a helpful benchmark, but we suspected that additional features and more flexible transformations could yield better results.
+
+### Final Model
+For our final model, we used a more advanced approach by incorporating:
+
+Additional categorical features: CAUSE.CATEGORY, CLIMATE.CATEGORY
+
+A scaled numeric feature: POPPCT_URBAN
+
+Polynomial expansion of ANOMALY.LEVEL to capture potential non-linear effects
+
+We also introduced regularization by switching to Ridge Regression, which helps control overfitting.
+
+To optimize our pipeline, we used GridSearchCV to tune two hyperparameters:
+
+The degree of the polynomial features: 1–25
+
+The alpha parameter for Ridge Regression: [0.1, 1.0, 10.0]
+
+Best parameters found via GridSearch:
+
+Polynomial degree: 1
+
+Ridge alpha: 0.1
+
+This outcome suggests that linear terms provided the best generalization, but the addition of regularization and more features helped improve performance over the baseline.
+
+### Final Model Performance:
+
+
+Metric	Value
+Training MSE	11.1 million min^2
+Testing MSE	10.4 million min^2
+Testing MAE	2158.37 mins
+Overall, this model yielded an 18% reduction in test mean squared error compared to our baseline. The improvement suggests that capturing more information about urban population, cause type, and applying regularization led to better generalization.
+
+
