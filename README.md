@@ -77,7 +77,17 @@ As suspected, **severe weather** is the most common cause—nearly **twice as fr
 
 The Oceanic Niño Index (ONI) helps classify climate conditions as **El Niño, La Niña, or Neutral**, based on thresholds of ±0.5°C. We explored its distribution to assess its potential relationship with outages.
 
----
+### Urban Population Percentage Distribution
+
+ <iframe
+ src="assets/pct_urb_by_state.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+ This demonstrates a higher urban population in cities on the coasts and in the West. This could potentially indicate the level of infrastructure that is in place in a certain area and thus how quickly a outage could be restored.
+
 
 ## Bivariate Analysis
 
@@ -92,7 +102,7 @@ Next, we explored relationships between **outage duration** and other features.
  frameborder="0"
  ></iframe>
 
-The **northeastern U.S.**—particularly **West Virginia**—tends to experience longer outages. This supports the hypothesis that geographic and possibly infrastructural factors play a role.
+The **northeastern U.S.**—particularly **West Virginia**—tends to experience longer outages. This is consistent with the areas where urban population density was lower. This supports the hypothesis that geographic and possibly infrastructural factors play a role.
 
 ### Outage Duration by Cause
 
@@ -116,4 +126,61 @@ Surprisingly, **fuel supply emergencies** lead to the longest outages, followed 
 
 The longest average outages occur in **September**. This could be linked to hurricane season or irregular fuel supply events.
 
----
+### Average Outage Duration by urban Population Percentage
+
+ <iframe
+ src="assets/duration_by_pcturb.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+Interestingly, areas with a higher urban population percentage tend to have longer outages. It also seems that the **northeastern U.S.** tends to have higher a higher percentage of urban populations and longer outages.
+
+## Interesting Aggregates
+
+In order to further explore the data, we aggregated it in different ways to gain some insights.
+
+### Average Outage Duration by Anomaly Level and Climate Region
+
+ <iframe
+ src="assets/pivot_anomaly_climate.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
+As demonstrated by the pivot table above, longer outages tend to occur during the normal ranges of the ONI level. It also demonstrates that the Northeast region tends to have longer outages as a whole.
+ 
+### Anomaly Levels by Month
+
+|   MONTH |   avg_anomaly |   avg_duration |   outage_count |
+|--------:|--------------:|---------------:|---------------:|
+|       1 |   -0.332576   |        2590.48 |            132 |
+|       2 |   -0.300763   |        2054.53 |            131 |
+|       3 |   -0.120652   |        1947.72 |             92 |
+|       4 |   -0.0598131  |        1493.86 |            107 |
+|       5 |   -0.126271   |        1704.39 |            118 |
+|       6 |   -0.072043   |        1948.4  |            186 |
+|       7 |   -0.0445714  |        1680.69 |            175 |
+|       8 |   -0.209272   |        2428.48 |            151 |
+|       9 |   -0.213043   |        4294.52 |             92 |
+|      10 |    0.0138889  |        3600.94 |            108 |
+|      11 |   -0.00724638 |        1728.16 |             69 |
+|      12 |    0.087037   |        3293.79 |            108 |
+
+The above table gives insight into how the anomaly levels change during the months and how that may coorespond to longer or shorter outages.
+
+### Outages Duration by Cause Category and Customers Affected
+
+| CAUSE.CATEGORY                |   OUTAGE.DURATION |   CUSTOMERS.AFFECTED |
+|:------------------------------|------------------:|---------------------:|
+| equipment failure             |           399.13  |          2.83979e+06 |
+| fuel supply emergency         |          8395.23  |          1           |
+| intentional attack            |           429.98  |     356315           |
+| islanding                     |           200.545 |     209749           |
+| public appeal                 |          1468.45  |     159994           |
+| severe weather                |          3704.41  |          1.31566e+08 |
+| system operability disruption |           728.87  |          1.70555e+07 |
+
+This table is key in demonstrating that the fact that fuel supply emergency is the cause with the longest outage duration may be an outlier, as it only affects 1 customer. Severe weather on the other hand, affects drastic numbers of customers.
