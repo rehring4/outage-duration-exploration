@@ -1,4 +1,4 @@
-# **Shockingly Predictable:** Forecasting Outage Duration with Climate & Calendar Clues
+# **Shockingly Predictable:** Forecasting Outage Duration
 
 *by Lauren May (laumay@umich.edu) and Julia Rehring (rehring@umich.edu)*
 
@@ -57,7 +57,7 @@ There is a clear pattern: more outages occur in **summer months**, with a smalle
 ### Outage Cause Distribution
 
  <iframe
- src="assets/outages_cause_distribution.html"
+ src="assets/outage_cause_distribution.html"
  width="800"
  height="600"
  frameborder="0"
@@ -68,6 +68,7 @@ As suspected, **severe weather** is the most common cause—nearly **twice as fr
 ### Climate Anomaly (ONI) Distribution
 
  <iframe
+ align ='center'
  src="assets/anomaly_distribution.html"
  width="800"
  height="600"
