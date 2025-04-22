@@ -185,8 +185,11 @@ The above table gives insight into how the anomaly levels change during the mont
 
 This table is key in demonstrating that the fact that fuel supply emergency is the cause with the longest outage duration may be an outlier, as it only affects 1 customer. Severe weather on the other hand, affects drastic numbers of customers.
 
+## Our Prediction Problem
+**How long will a power outage last, given various attributes like month, climate region, and population demographics? How well can we develop a regression model to predict this duration?**
+
 ## Baseline Model
-To predict power outage duration, we created a baseline model using a Linear Regression pipeline. This model incorporated three key features:
+To predict power outage duration, we created a baseline model using a **Linear Regression** pipeline. This model incorporated three key features:
 
 `MONTH` (categorical, one-hot encoded)
 
@@ -194,7 +197,9 @@ To predict power outage duration, we created a baseline model using a Linear Reg
 
 `ANOMALY.LEVEL` (numerical, with a transformation to absolute value)
 
-We used scikit-learn’s **Pipeline** and **ColumnTransformer** to preprocess the data and train the model. The categorical columns were encoded using OneHotEncoder, and the anomaly level was passed through a FunctionTransformer to take its absolute value. We trained the model on a train/test split and evaluated its performance using mean squared error (MSE) and mean absolute error (MAE).
+We used scikit-learn’s **Pipeline** and **ColumnTransformer** to preprocess the data and train the model. The categorical columns were encoded using OneHotEncoder, and the anomaly level was passed through a FunctionTransformer to take its absolute value. We trained the model on a train/test split and evaluated its performance using mean squared error (MSE) and mean absolute error (MAE). 
+
+We decided to utilize MSE because it is the standard metric for analyzing the performance of a regression model and would later be used in our cross-validation process in Part 5. However, since MSE is sensitive to outliers and we have some very large outage values, we decided to also use absolute error to represent the model's performance. 
 
 ### Baseline Model Performance:
 
@@ -213,19 +218,17 @@ A scaled numeric feature: `POPPCT_URBAN`
 
 Polynomial expansion of `ANOMALY.LEVEL` to capture potential non-linear effects
 
-We also introduced regularization by switching to **Ridge Regression**, which helps control overfitting.
+We also introduced regularization by switching to **Ridge Regression**, which helps control overfitting. To optimize our pipeline, we used **GridSearchCV** to tune two hyperparameters:
 
-To optimize our pipeline, we used **GridSearchCV** to tune two hyperparameters:
+* The degree of the polynomial features: **1–25**
 
-The degree of the polynomial features: **1–25**
-
-The alpha parameter for Ridge Regression: **[0.1, 1.0, 10.0]**
+* The alpha parameter for Ridge Regression: **[0.1, 1.0, 10.0]**
 
 Best parameters found via GridSearch:
 
-Polynomial degree: 1
+* Polynomial degree: **1**
 
-Ridge alpha: 0.1
+* Ridge alpha: **0.1**
 
 This outcome suggests that linear terms provided the best generalization, but the addition of regularization and more features helped improve performance over the baseline.
 
